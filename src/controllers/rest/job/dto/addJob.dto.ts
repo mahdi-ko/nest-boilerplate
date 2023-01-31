@@ -7,8 +7,6 @@ import {
   IsString,
 } from 'class-validator';
 
-import { IsValidInt } from '~/src/core/decorators/validators.decorator';
-
 export class CreateJobDto {
   @IsNotEmpty()
   @IsString()

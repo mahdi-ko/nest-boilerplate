@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-// TODO : Add the sendinblue api key in the .env file
+//TODO add to env
 // AND CHANGE THE SENDER EMAIL AND NAME
 @Injectable()
 export class SendinblueConfig {

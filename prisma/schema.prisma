@@ -2,6 +2,7 @@ generator client {
   provider = "prisma-client-js"
 }
 
+//TODO add to env
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
@@ -29,77 +30,25 @@ enum JobTimeEnum {
   PART_TIME
 }
 
-enum SaleTypeEnum {
-  SALE
-  RENT
-}
-
-enum PropertyTypeEnum {
-  RESIDENTIAL
-  COMMERCIAL
-  INDUSTRIAL
-  LAND
-}
-
-enum TransmissionEnum {
-  MANUAL
-  AUTOMATIC
-}
-
-enum ColorEnum {
-  White
-  Black
-  Gray
-  Silver
-  Red
-  Blue
-  Brown
-  Green
-  Beige
-  Orange
-  Gold
-  Yellow
-  Purple
-}
-
-enum ConditionEnum {
-  NEW
-  USED
-}
-
 enum RoleEnum {
   MEMBER
   ADMIN
 }
 
 model User {
-  id          Int       @id @default(autoincrement())
-  createdAt   DateTime  @default(now())
-  email       String    @unique
-  username    String
-  password    String?
-  phone       String?
-  dateOfBirth DateTime?
-  address     String?
-  website     String?
-  active      Boolean?  @default(false)
-
-  bio String?
-
+  id             Int       @id @default(autoincrement())
+  createdAt      DateTime  @default(now())
+  email          String    @unique
+  username       String
+  password       String?
+  phone          String?
+  dateOfBirth    DateTime?
+  address        String?
   profilePicPath String?
-  cvPath         String?
-
-  school     String?
-  degree     String?
-  studyField String?
-  grade      String?
+  active         Boolean?  @default(false)
 
   verifyEmailToken    String?
   forgotPasswordToken String?
-
-  premiumStart DateTime?
-  premiumEnd   DateTime?
-  isPremium    Boolean?  @default(false)
 
   googleId   String?
   facebookId String?
@@ -107,24 +56,8 @@ model User {
   role   RoleEnum    @default(MEMBER)
   gender GenderEnum?
 
-  experiences           Experience[]
-  publishedJobs         Job[]
-  publishedServices     Service[]
-  publishedrRealEstates RealEstate[]
-  publishedVehicles     Vehicle[]
-}
-
-model Experience {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now())
-  title     String
-  industry  String
-  startDate DateTime
-  endDate   DateTime?
-  active    Boolean   @default(false)
-
-  user   User @relation(fields: [userId], references: [id])
-  userId Int
+  publishedJobs     Job[]
+  publishedServices Service[]
 }
 
 model CompanyAd {
@@ -160,78 +93,13 @@ model Service {
   title       String
   price       Decimal? @db.Decimal(10, 2)
   description String?
-  files       File[]
   city        String?
   address     String?
 
   currency CurrencyEnum
 
-  publisher   User @relation(fields: [publisherId], references: [id])
-  publisherId Int
-}
-
-model RealEstate {
-  id          Int      @id @default(autoincrement())
-  createdAt   DateTime @default(now())
-  title       String
-  price       Decimal  @db.Decimal(10, 2)
-  description String
-  city        String?
-  size        Int?
-  bathrooms   Int?
-  bedrooms    Int?
-  furnished   Boolean?
-  phone       String
-  floor       Int?
-
-  condition    ConditionEnum
-  saleType     SaleTypeEnum
-  propertyType PropertyTypeEnum
-  currency     CurrencyEnum
-
-  premiumStart DateTime?
-  premiumEnd   DateTime?
-  isPremium    Boolean?  @default(false)
-
-  files File[]
-
-  amenity   Amenity? @relation(fields: [amenityId], references: [id])
-  amenityId Int?
-
-  publisher   User @relation(fields: [publisherId], references: [id])
-  publisherId Int
-}
-
-model Amenity {
-  id          Int          @id @default(autoincrement())
-  name        String
-  nameAr      String
-  realEstates RealEstate[]
-}
-
-model Vehicle {
-  id          Int      @id @default(autoincrement())
-  createdAt   DateTime @default(now())
-  title       String
-  phone       String
-  price       Decimal  @db.Decimal(10, 2)
-  description String?
-  kilometers  Int?
-  year        Int?
-  city        String?
-
-  condition    ConditionEnum
-  transmission TransmissionEnum?
-  color        ColorEnum?
-  currency     CurrencyEnum
-
-  premiumStart DateTime?
-  premiumEnd   DateTime?
-  isPremium    Boolean?  @default(false)
-
-  files File[]
-
-  publisher   User @relation(fields: [publisherId], references: [id])
+  files       File[]
+  publisher   User   @relation(fields: [publisherId], references: [id])
   publisherId Int
 }
 
@@ -239,12 +107,6 @@ model File {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   path      String
-
-  vehicle   Vehicle? @relation(fields: [vehicleId], references: [id])
-  vehicleId Int?
-
-  realEstate   RealEstate? @relation(fields: [realEstateId], references: [id])
-  realEstateId Int?
 
   service   Service? @relation(fields: [serviceId], references: [id])
   serviceId Int?

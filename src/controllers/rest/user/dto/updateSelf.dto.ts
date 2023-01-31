@@ -21,34 +21,6 @@ export class UpdateSelfDto {
   dateOfBirth?: Date;
 
   @IsOptional()
-  @IsString()
-  address?: string;
-
-  @IsOptional()
-  @IsString()
-  website?: string;
-
-  @IsOptional()
-  @IsString()
-  bio?: string;
-
-  @IsOptional()
-  @IsString()
-  school?: string;
-
-  @IsOptional()
-  @IsString()
-  degree?: string;
-
-  @IsOptional()
-  @IsString()
-  studyField?: string;
-
-  @IsOptional()
-  @IsString()
-  grade?: string;
-
-  @IsOptional()
   @IsEnum(GenderEnum)
   gender?: GenderEnum;
 }

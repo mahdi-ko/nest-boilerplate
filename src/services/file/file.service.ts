@@ -17,18 +17,12 @@ export class FileService {
       select: {
         id: true,
         path: true,
-        realEstate: { select: { publisherId: true } },
         service: { select: { publisherId: true } },
-        vehicle: { select: { publisherId: true } },
       },
     });
     if (!file) throw new BadRequestException('File not found');
 
-    if (
-      file.realEstate?.publisherId !== userId &&
-      file.service?.publisherId !== userId &&
-      file.vehicle?.publisherId !== userId
-    )
+    if (file.service?.publisherId !== userId)
       throw new BadRequestException('You are not allowed to delete this file');
 
     const deletedFile = await this.prisma.file.delete({

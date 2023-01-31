@@ -35,46 +35,8 @@ export class UpdateUserDto {
   address?: string;
 
   @IsOptional()
-  @IsString()
-  website?: string;
-
-  @IsOptional()
-  @IsString()
-  bio?: string;
-
-  @IsOptional()
-  @IsString()
-  school?: string;
-
-  @IsOptional()
   @IsValidBoolean()
   active?: boolean;
-
-  @IsOptional()
-  @IsString()
-  degree?: string;
-
-  @IsOptional()
-  @IsString()
-  studyField?: string;
-
-  @IsOptional()
-  @IsString()
-  grade?: string;
-
-  @IsOptional()
-  @IsValidDate()
-  @Transform(({ value }) => value && new Date(value))
-  premiumStart?: Date;
-
-  @IsOptional()
-  @IsValidDate()
-  @Transform(({ value }) => value && new Date(value))
-  premiumEnd?: Date;
-
-  @IsOptional()
-  @IsValidBoolean()
-  isPremium?: boolean;
 
   @IsOptional()
   @IsEnum(RoleEnum)

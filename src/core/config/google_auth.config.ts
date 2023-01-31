@@ -1,6 +1,6 @@
 import { OAuth2Client } from 'google-auth-library';
 
-// TODO add to .env
+//TODO add to env
 export class GoogleAuthConfig {
   public client: OAuth2Client;
 

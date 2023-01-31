@@ -15,7 +15,6 @@ import { GoogleAuthConfig } from '~/src/core/config/google_auth.config';
 import { PrismaService } from '../../infrastructure/prisma.service';
 import { SignupDto } from './../../controllers/rest/auth/dto/signup.dto';
 import { defaultUserSelect } from './../../core/utils/defaultSelect/user.utils';
-import { FacebookDebugTokenResponse } from './types';
 import { debugFacebookToken } from './utils/debugFacebookToken.utils';
 import { hashPass, isPassMatch } from './utils/encrypt.utils';
 import {

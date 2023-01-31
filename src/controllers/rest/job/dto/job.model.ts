@@ -14,7 +14,6 @@ export type JobObject = {
   time: JobTimeEnum;
   publisher: {
     id: number;
-    isPremium: boolean;
     username: string;
     profilePicPath: string | null;
   };

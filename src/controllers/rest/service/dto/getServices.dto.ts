@@ -1,6 +1,5 @@
 import { IsEnum, IsOptional, IsString } from 'class-validator';
 
-import { IsValidInt } from '~/src/core/decorators/validators.decorator';
 import { PostedDateEnum } from '~/src/core/utils/enums/PostedDate.enum';
 
 enum ServicesSortByEnum {

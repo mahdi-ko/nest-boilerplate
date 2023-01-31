@@ -12,6 +12,6 @@ export class PlaygroundController {
 
   @Get('test')
   test(@Body() body: unknown) {
-    return 'ok';
+    return body;
   }
 }

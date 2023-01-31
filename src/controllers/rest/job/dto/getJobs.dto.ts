@@ -1,7 +1,6 @@
 import { JobTypeEnum } from '@prisma/client';
 import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
-import { IsValidInt } from '~/src/core/decorators/validators.decorator';
 import { PostedDateEnum } from '~/src/core/utils/enums/PostedDate.enum';
 
 export class GetJobsQueryDto {

@@ -18,7 +18,6 @@ export type ServiceObject = {
 export type ServiceObjectFull = ServiceObject & {
   publisher: {
     id: number;
-    isPremium: boolean;
     username: string;
     profilePicPath: string | null;
   };

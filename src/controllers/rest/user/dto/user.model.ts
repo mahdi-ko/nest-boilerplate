@@ -8,17 +8,7 @@ export type UserObject = {
   phone?: string;
   dateOfBirth?: Date;
   address?: string;
-  website?: string;
-  bio?: string;
   profilePicPath?: string;
-  cvPath?: string;
-  school?: string;
-  degree?: string;
-  studyField?: string;
-  grade?: string;
-  premiumStart?: Date;
-  premiumEnd?: Date;
-  isPremium?: boolean;
   role?: RoleEnum;
   gender?: GenderEnum;
 };

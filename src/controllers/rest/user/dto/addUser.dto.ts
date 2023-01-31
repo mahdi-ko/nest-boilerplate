@@ -34,44 +34,6 @@ export class CreateUserDto {
   address?: string;
 
   @IsOptional()
-  @IsString()
-  website?: string;
-
-  @IsOptional()
-  @IsString()
-  bio?: string;
-
-  @IsOptional()
-  @IsString()
-  school?: string;
-
-  @IsOptional()
-  @IsString()
-  degree?: string;
-
-  @IsOptional()
-  @IsString()
-  studyField?: string;
-
-  @IsOptional()
-  @IsString()
-  grade?: string;
-
-  @IsOptional()
-  @IsValidBoolean()
-  isPremium?: boolean;
-
-  @IsOptional()
-  @IsValidDate()
-  @Transform(({ value }) => value && new Date(value))
-  premiumStart?: Date;
-
-  @IsOptional()
-  @IsValidDate()
-  @Transform(({ value }) => value && new Date(value))
-  premiumEnd?: Date;
-
-  @IsOptional()
   @IsEnum(RoleEnum)
   role?: RoleEnum;
 

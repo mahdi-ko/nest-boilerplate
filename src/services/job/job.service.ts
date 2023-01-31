@@ -40,7 +40,6 @@ export class JobService {
     };
     const wherePremium: Prisma.JobWhereInput = {
       type,
-      publisher: { isPremium: true },
       ...(search && {
         OR: [
           { title: { contains: search } },
@@ -57,7 +56,6 @@ export class JobService {
           publisher: {
             select: {
               id: true,
-              isPremium: true,
               username: true,
               profilePicPath: true,
             },
@@ -71,7 +69,6 @@ export class JobService {
           publisher: {
             select: {
               id: true,
-              isPremium: true,
               username: true,
               profilePicPath: true,
             },
@@ -100,7 +97,6 @@ export class JobService {
     const { search, type } = params;
     const where: Prisma.JobWhereInput = {
       type,
-      publisher: { isPremium: true },
       ...(search && {
         OR: [
           { title: { contains: search } },
@@ -114,7 +110,6 @@ export class JobService {
         publisher: {
           select: {
             id: true,
-            isPremium: true,
             username: true,
             profilePicPath: true,
           },

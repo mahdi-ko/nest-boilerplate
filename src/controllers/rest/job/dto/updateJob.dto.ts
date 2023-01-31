@@ -1,8 +1,6 @@
 import { CurrencyEnum, JobTimeEnum, JobTypeEnum } from '@prisma/client';
 import { IsDecimal, IsEnum, IsOptional, IsString } from 'class-validator';
 
-import { IsValidInt } from '~/src/core/decorators/validators.decorator';
-
 export class UpdateJobDto {
   @IsOptional()
   @IsString()

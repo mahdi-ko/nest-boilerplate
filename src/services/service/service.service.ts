@@ -55,8 +55,6 @@ export class ServiceService {
           { description: { contains: search } },
         ],
       }),
-
-      publisher: { isPremium: true },
     };
 
     const [normal, premiumResult, total] = await this.prisma.$transaction([
@@ -68,7 +66,6 @@ export class ServiceService {
           publisher: {
             select: {
               id: true,
-              isPremium: true,
               username: true,
               profilePicPath: true,
             },
@@ -83,7 +80,6 @@ export class ServiceService {
           publisher: {
             select: {
               id: true,
-              isPremium: true,
               username: true,
               profilePicPath: true,
             },
@@ -117,8 +113,6 @@ export class ServiceService {
           { description: { contains: search } },
         ],
       }),
-
-      publisher: { isPremium: true },
     };
 
     return this.prisma.service.findMany({
@@ -128,7 +122,6 @@ export class ServiceService {
         publisher: {
           select: {
             id: true,
-            isPremium: true,
             username: true,
             profilePicPath: true,
           },

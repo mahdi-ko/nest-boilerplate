@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-
-// TODO : Add the secrets to the .env file 
+//TODO add to env
 @Injectable()
 export class JwtConfig {
   accessTokenSecret = process.env.ACCESS_TOKEN_SECRET;
