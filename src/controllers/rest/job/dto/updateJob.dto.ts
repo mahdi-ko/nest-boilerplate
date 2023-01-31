@@ -35,16 +35,4 @@ export class UpdateJobDto {
   @IsOptional()
   @IsEnum(JobTimeEnum)
   time?: JobTimeEnum;
-
-  @IsOptional()
-  @IsValidInt()
-  categoryId?: number;
-
-  @IsOptional()
-  @IsValidInt()
-  countryId?: number;
-
-  @IsOptional()
-  @IsValidInt()
-  regionId?: number;
 }

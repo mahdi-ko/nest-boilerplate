@@ -27,9 +27,7 @@ export class ServiceService {
     const { page, ...args } = pagination;
     const {
       search,
-      categoryId,
-      countryId,
-      regionsIds,
+
       postedDateEnum,
       sortBy,
       sortOrder,
@@ -44,9 +42,7 @@ export class ServiceService {
           { description: { contains: search }, city: { contains: search } },
         ],
       }),
-      ...(categoryId && { categoryId }),
-      ...(countryId && { countryId }),
-      ...(regionsIds?.length > 0 && { regionId: { in: regionsIds } }),
+
       ...(postedDateEnum && {
         createdAt: { gte: postedDateEnumToDate(postedDateEnum) },
       }),
@@ -59,8 +55,7 @@ export class ServiceService {
           { description: { contains: search } },
         ],
       }),
-      ...(categoryId && { categoryId }),
-      ...(countryId && { countryId }),
+
       publisher: { isPremium: true },
     };
 
@@ -69,9 +64,6 @@ export class ServiceService {
         ...args,
         where,
         include: {
-          category: true,
-          country: true,
-          region: true,
           files: true,
           publisher: {
             select: {
@@ -87,9 +79,6 @@ export class ServiceService {
       this.prisma.service.findMany({
         where: wherePremium,
         include: {
-          category: true,
-          country: true,
-          region: true,
           files: true,
           publisher: {
             select: {
@@ -120,7 +109,7 @@ export class ServiceService {
   }
 
   async getFeaturedServices(params: GetFeaturedServicesQueryDto) {
-    const { search, categoryId, countryId } = params;
+    const { search } = params;
     const where: Prisma.ServiceWhereInput = {
       ...(search && {
         OR: [
@@ -128,17 +117,13 @@ export class ServiceService {
           { description: { contains: search } },
         ],
       }),
-      ...(categoryId && { categoryId }),
-      ...(countryId && { countryId }),
+
       publisher: { isPremium: true },
     };
 
     return this.prisma.service.findMany({
       where,
       include: {
-        category: true,
-        country: true,
-        region: true,
         files: true,
         publisher: {
           select: {

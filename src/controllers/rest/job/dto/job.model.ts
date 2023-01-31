@@ -1,13 +1,4 @@
-import {
-  Country,
-  CurrencyEnum,
-  JobTimeEnum,
-  JobTypeEnum,
-  Prisma,
-  Region,
-} from '@prisma/client';
-
-import { Category } from '../../category/dto/category.model';
+import { CurrencyEnum, JobTimeEnum, JobTypeEnum, Prisma } from '@prisma/client';
 
 export type JobObject = {
   id: number;
@@ -21,9 +12,6 @@ export type JobObject = {
   currency: CurrencyEnum;
   type: JobTypeEnum;
   time: JobTimeEnum;
-  category: Category;
-  country: Country;
-  region: Region;
   publisher: {
     id: number;
     isPremium: boolean;

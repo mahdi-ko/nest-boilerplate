@@ -8,9 +8,6 @@ export type CreateServiceInput = {
   city?: string;
   address?: string;
   currency: CurrencyEnum;
-  categoryId: number;
-  countryId: number;
-  regionId?: number;
 };
 
 export type UpdateServiceInput = {
@@ -21,7 +18,4 @@ export type UpdateServiceInput = {
   city?: string;
   address?: string;
   currency?: CurrencyEnum;
-  categoryId?: number;
-  countryId?: number;
-  regionId?: number;
 };

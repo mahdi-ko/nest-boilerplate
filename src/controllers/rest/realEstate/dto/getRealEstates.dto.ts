@@ -22,20 +22,8 @@ export class GetRealEstatesQueryDto {
   search?: string;
 
   @IsOptional()
-  @IsValidInt()
-  categoryId?: number;
-
-  @IsOptional()
-  @IsValidInt()
-  countryId?: number;
-
-  @IsOptional()
   @IsEnum(PostedDateEnum)
   postedDateEnum?: PostedDateEnum;
-
-  @IsOptional()
-  @IsValidInt({ each: true })
-  regionsIds?: number[];
 
   @IsOptional()
   @IsValidInt()
@@ -98,12 +86,4 @@ export class GetFeaturedRealEstatesQueryDto {
   @IsOptional()
   @IsString()
   search?: string;
-
-  @IsOptional()
-  @IsValidInt()
-  categoryId?: number;
-
-  @IsOptional()
-  @IsValidInt()
-  countryId?: number;
 }

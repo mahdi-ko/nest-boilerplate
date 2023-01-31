@@ -10,9 +10,6 @@ export type CreateJobInput = {
   currency: CurrencyEnum;
   type: JobTypeEnum;
   time: JobTimeEnum;
-  categoryId: number;
-  countryId: number;
-  regionId?: number;
 };
 
 export type UpdateJobInput = {
@@ -25,8 +22,4 @@ export type UpdateJobInput = {
   currency?: CurrencyEnum;
   type?: JobTypeEnum;
   time?: JobTimeEnum;
-
-  categoryId?: number;
-  countryId?: number;
-  regionId?: number;
 };

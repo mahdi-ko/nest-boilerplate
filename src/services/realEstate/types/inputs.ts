@@ -11,8 +11,6 @@ export type CreateRealEstateInput = {
   phone: string;
   description: string;
   currency: CurrencyEnum;
-  categoryId: number;
-  countryId: number;
   condition: ConditionEnum;
   saleType: SaleTypeEnum;
   propertyType: PropertyTypeEnum;
@@ -20,7 +18,6 @@ export type CreateRealEstateInput = {
   size?: number;
   filesPaths?: string[];
   city?: string;
-  regionId?: number;
   bathrooms?: number;
   bedrooms?: number;
   furnished?: boolean;
@@ -33,8 +30,6 @@ export type UpdateRealEstateInput = {
   phone?: string;
   description?: string;
   currency?: CurrencyEnum;
-  categoryId?: number;
-  countryId?: number;
   condition?: ConditionEnum;
   saleType?: SaleTypeEnum;
   propertyType?: PropertyTypeEnum;
@@ -42,7 +37,6 @@ export type UpdateRealEstateInput = {
   size?: number;
   filesPaths?: string[];
   city?: string;
-  regionId?: number;
   bathrooms?: number;
   bedrooms?: number;
   furnished?: boolean;

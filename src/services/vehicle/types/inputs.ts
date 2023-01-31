@@ -17,9 +17,6 @@ export type CreateVehicleInput = {
   color?: ColorEnum;
   transmission?: TransmissionEnum;
   currency: CurrencyEnum;
-  categoryId: number;
-  countryId: number;
-  regionId?: number;
   filesPaths?: string[];
 };
 
@@ -35,9 +32,6 @@ export type UpdateVehicleInput = {
   color?: ColorEnum;
   transmission?: TransmissionEnum;
   currency?: CurrencyEnum;
-  categoryId?: number;
-  countryId?: number;
-  regionId?: number;
   filesPaths?: string[];
   premiumStart?: Date;
   premiumEnd?: Date;

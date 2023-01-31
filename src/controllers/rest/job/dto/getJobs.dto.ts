@@ -14,20 +14,8 @@ export class GetJobsQueryDto {
   search?: string;
 
   @IsOptional()
-  @IsValidInt()
-  categoryId?: number;
-
-  @IsOptional()
-  @IsValidInt()
-  countryId?: number;
-
-  @IsOptional()
   @IsEnum(PostedDateEnum)
   postedDateEnum?: PostedDateEnum;
-
-  @IsOptional()
-  @IsValidInt({ each: true })
-  regionsIds?: number[];
 }
 
 export class GetFeaturedJobsQueryDto {
@@ -38,12 +26,4 @@ export class GetFeaturedJobsQueryDto {
   @IsNotEmpty()
   @IsEnum(JobTypeEnum)
   type: JobTypeEnum;
-
-  @IsOptional()
-  @IsValidInt()
-  categoryId?: number;
-
-  @IsOptional()
-  @IsValidInt()
-  countryId?: number;
 }

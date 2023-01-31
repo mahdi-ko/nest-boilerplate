@@ -75,18 +75,6 @@ export class CreateRealEstateDto {
   amenityId: number;
 
   @IsNotEmpty()
-  @IsValidInt()
-  categoryId: number;
-
-  @IsNotEmpty()
-  @IsValidInt()
-  countryId: number;
-
-  @IsOptional()
-  @IsValidInt()
-  regionId?: number;
-
-  @IsNotEmpty()
   @IsString()
   phone: string;
 }

@@ -71,18 +71,6 @@ export class UpdateRealEstateDto {
   amenityId?: number;
 
   @IsOptional()
-  @IsValidInt()
-  categoryId?: number;
-
-  @IsOptional()
-  @IsValidInt()
-  countryId?: number;
-
-  @IsOptional()
-  @IsValidInt()
-  regionId?: number;
-
-  @IsOptional()
   @IsString()
   address?: string;
 

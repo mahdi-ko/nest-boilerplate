@@ -31,9 +31,6 @@ export class RealEstateService {
     const { page, ...args } = pagination;
     const {
       search,
-      categoryId,
-      countryId,
-      regionsIds,
       postedDateEnum,
       sortBy,
       sortOrder,
@@ -63,9 +60,7 @@ export class RealEstateService {
           { description: { contains: search }, city: { contains: search } },
         ],
       }),
-      ...(categoryId && { categoryId }),
-      ...(countryId && { countryId }),
-      ...(regionsIds?.length > 0 && { regionId: { in: regionsIds } }),
+
       ...(postedDateEnum && {
         createdAt: { gte: postedDateEnumToDate(postedDateEnum) },
       }),
@@ -92,8 +87,6 @@ export class RealEstateService {
           { description: { contains: search }, city: { contains: search } },
         ],
       }),
-      ...(categoryId && { categoryId }),
-      ...(countryId && { countryId }),
     };
 
     const [normal, premiumResult, total] = await this.prisma.$transaction([
@@ -101,9 +94,6 @@ export class RealEstateService {
         ...args,
         where,
         include: {
-          category: true,
-          country: true,
-          region: true,
           files: true,
           amenity: true,
           publisher: {
@@ -119,9 +109,6 @@ export class RealEstateService {
       this.prisma.realEstate.findMany({
         where: wherePremium,
         include: {
-          category: true,
-          country: true,
-          region: true,
           amenity: true,
           files: true,
           publisher: {
@@ -151,7 +138,7 @@ export class RealEstateService {
     });
   }
   async getFeaturedRealEstates(params: GetFeaturedRealEstatesQueryDto) {
-    const { categoryId, countryId, search } = params;
+    const { search } = params;
     const where: Prisma.RealEstateWhereInput = {
       ...(search && {
         OR: [
@@ -159,16 +146,11 @@ export class RealEstateService {
           { description: { contains: search }, city: { contains: search } },
         ],
       }),
-      ...(categoryId && { categoryId }),
-      ...(countryId && { countryId }),
     };
 
     return this.prisma.realEstate.findMany({
       where,
       include: {
-        category: true,
-        country: true,
-        region: true,
         amenity: true,
         files: true,
         publisher: {

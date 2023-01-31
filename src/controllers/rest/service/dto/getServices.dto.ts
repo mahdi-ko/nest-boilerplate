@@ -18,20 +18,8 @@ export class GetServicesQueryDto {
   search?: string;
 
   @IsOptional()
-  @IsValidInt()
-  categoryId?: number;
-
-  @IsOptional()
-  @IsValidInt()
-  countryId?: number;
-
-  @IsOptional()
   @IsEnum(PostedDateEnum)
   postedDateEnum?: PostedDateEnum;
-
-  @IsOptional()
-  @IsValidInt({ each: true })
-  regionsIds?: number[];
 
   @IsOptional()
   @IsEnum(ServicesSortByEnum)
@@ -46,12 +34,4 @@ export class GetFeaturedServicesQueryDto {
   @IsOptional()
   @IsString()
   search?: string;
-
-  @IsOptional()
-  @IsValidInt()
-  categoryId?: number;
-
-  @IsOptional()
-  @IsValidInt()
-  countryId?: number;
 }

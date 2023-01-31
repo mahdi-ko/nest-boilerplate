@@ -27,16 +27,4 @@ export class UpdateServiceDto {
   @IsOptional()
   @IsEnum(CurrencyEnum)
   currency?: CurrencyEnum;
-
-  @IsOptional()
-  @IsValidInt()
-  categoryId?: number;
-
-  @IsOptional()
-  @IsValidInt()
-  countryId?: number;
-
-  @IsOptional()
-  @IsValidInt()
-  regionId?: number;
 }

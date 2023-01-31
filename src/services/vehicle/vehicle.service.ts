@@ -28,9 +28,6 @@ export class VehicleService {
     const { page, ...args } = pagination;
     const {
       search,
-      categoryId,
-      countryId,
-      regionsIds,
       postedDateEnum,
       sortBy,
       sortOrder,
@@ -54,9 +51,7 @@ export class VehicleService {
           { description: { contains: search }, city: { contains: search } },
         ],
       }),
-      ...(categoryId && { categoryId }),
-      ...(countryId && { countryId }),
-      ...(regionsIds?.length > 0 && { regionId: { in: regionsIds } }),
+
       ...(postedDateEnum && {
         createdAt: { gte: postedDateEnumToDate(postedDateEnum) },
       }),
@@ -82,8 +77,6 @@ export class VehicleService {
           { description: { contains: search }, city: { contains: search } },
         ],
       }),
-      ...(categoryId && { categoryId }),
-      ...(countryId && { countryId }),
     };
 
     const [normal, premiumResult, total] = await this.prisma.$transaction([
@@ -91,9 +84,6 @@ export class VehicleService {
         ...args,
         where,
         include: {
-          category: true,
-          country: true,
-          region: true,
           files: true,
           publisher: {
             select: {
@@ -108,9 +98,6 @@ export class VehicleService {
       this.prisma.vehicle.findMany({
         where: wherePremium,
         include: {
-          category: true,
-          country: true,
-          region: true,
           files: true,
           publisher: {
             select: {
@@ -138,7 +125,7 @@ export class VehicleService {
     });
   }
   async getFeaturedVehicles(params: GetFeaturedVehiclesQueryDto) {
-    const { categoryId, countryId, search } = params;
+    const { search } = params;
     const where: Prisma.VehicleWhereInput = {
       ...(search && {
         OR: [
@@ -146,16 +133,11 @@ export class VehicleService {
           { description: { contains: search }, city: { contains: search } },
         ],
       }),
-      ...(categoryId && { categoryId }),
-      ...(countryId && { countryId }),
     };
 
     return this.prisma.vehicle.findMany({
       where,
       include: {
-        category: true,
-        country: true,
-        region: true,
         files: true,
         publisher: {
           select: {

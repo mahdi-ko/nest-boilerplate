@@ -24,8 +24,7 @@ export class JobService {
 
   async getJobs(pagination: PaginationInput, params: GetJobsQueryDto) {
     const { page, ...args } = pagination;
-    const { search, categoryId, countryId, type, regionsIds, postedDateEnum } =
-      params;
+    const { search, type, postedDateEnum } = params;
 
     const where: Prisma.JobWhereInput = {
       type,
@@ -35,9 +34,6 @@ export class JobService {
           { description: { contains: search }, city: { contains: search } },
         ],
       }),
-      ...(categoryId && { categoryId }),
-      ...(countryId && { countryId }),
-      ...(regionsIds?.length > 0 && { regionId: { in: regionsIds } }),
       ...(postedDateEnum && {
         createdAt: { gte: postedDateEnumToDate(postedDateEnum) },
       }),
@@ -51,8 +47,6 @@ export class JobService {
           { description: { contains: search }, city: { contains: search } },
         ],
       }),
-      ...(categoryId && { categoryId }),
-      ...(countryId && { countryId }),
     };
 
     const [normal, premiumResult, total] = await this.prisma.$transaction([
@@ -60,9 +54,6 @@ export class JobService {
         ...args,
         where,
         include: {
-          category: true,
-          country: true,
-          region: true,
           publisher: {
             select: {
               id: true,
@@ -77,9 +68,6 @@ export class JobService {
       this.prisma.job.findMany({
         where: wherePremium,
         include: {
-          category: true,
-          country: true,
-          region: true,
           publisher: {
             select: {
               id: true,
@@ -109,7 +97,7 @@ export class JobService {
   }
 
   async getFeaturedJobs(params: GetFeaturedJobsQueryDto) {
-    const { categoryId, countryId, search, type } = params;
+    const { search, type } = params;
     const where: Prisma.JobWhereInput = {
       type,
       publisher: { isPremium: true },
@@ -119,15 +107,10 @@ export class JobService {
           { description: { contains: search }, city: { contains: search } },
         ],
       }),
-      ...(categoryId && { categoryId }),
-      ...(countryId && { countryId }),
     };
     return this.prisma.job.findMany({
       where,
       include: {
-        category: true,
-        country: true,
-        region: true,
         publisher: {
           select: {
             id: true,

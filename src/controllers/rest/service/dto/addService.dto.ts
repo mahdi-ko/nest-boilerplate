@@ -33,16 +33,4 @@ export class CreateServiceDto {
   @IsNotEmpty()
   @IsEnum(CurrencyEnum)
   currency: CurrencyEnum;
-
-  @IsNotEmpty()
-  @IsValidInt()
-  categoryId: number;
-
-  @IsNotEmpty()
-  @IsValidInt()
-  countryId: number;
-
-  @IsOptional()
-  @IsValidInt()
-  regionId?: number;
 }

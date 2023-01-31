@@ -38,18 +38,6 @@ export class UpdateVehicleDto {
   currency?: CurrencyEnum;
 
   @IsOptional()
-  @IsValidInt()
-  categoryId?: number;
-
-  @IsOptional()
-  @IsValidInt()
-  countryId?: number;
-
-  @IsOptional()
-  @IsValidInt()
-  regionId?: number;
-
-  @IsOptional()
   @IsString()
   phone?: string;
 

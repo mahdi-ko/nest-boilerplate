@@ -150,21 +150,8 @@ model Job {
   type     JobTypeEnum
   time     JobTimeEnum
 
-  category    JobCategory @relation(fields: [categoryId], references: [id])
-  categoryId  Int
-  country     Country     @relation(fields: [countryId], references: [id])
-  countryId   Int
-  region      Region?     @relation(fields: [regionId], references: [id])
-  regionId    Int?
-  publisher   User        @relation(fields: [publisherId], references: [id])
+  publisher   User @relation(fields: [publisherId], references: [id])
   publisherId Int
-}
-
-model JobCategory {
-  id     Int    @id @default(autoincrement())
-  name   String
-  nameAr String
-  jobs   Job[]
 }
 
 model Service {
@@ -179,21 +166,8 @@ model Service {
 
   currency CurrencyEnum
 
-  category    ServiceCategory @relation(fields: [categoryId], references: [id])
-  categoryId  Int
-  country     Country         @relation(fields: [countryId], references: [id])
-  countryId   Int
-  region      Region?         @relation(fields: [regionId], references: [id])
-  regionId    Int?
-  publisher   User            @relation(fields: [publisherId], references: [id])
+  publisher   User @relation(fields: [publisherId], references: [id])
   publisherId Int
-}
-
-model ServiceCategory {
-  id       Int       @id @default(autoincrement())
-  name     String
-  nameAr   String
-  services Service[]
 }
 
 model RealEstate {
@@ -224,13 +198,7 @@ model RealEstate {
   amenity   Amenity? @relation(fields: [amenityId], references: [id])
   amenityId Int?
 
-  category    RealEstateCategory @relation(fields: [categoryId], references: [id])
-  categoryId  Int
-  country     Country            @relation(fields: [countryId], references: [id])
-  countryId   Int
-  region      Region?            @relation(fields: [regionId], references: [id])
-  regionId    Int?
-  publisher   User               @relation(fields: [publisherId], references: [id])
+  publisher   User @relation(fields: [publisherId], references: [id])
   publisherId Int
 }
 
@@ -263,28 +231,8 @@ model Vehicle {
 
   files File[]
 
-  category    VehicleCategory @relation(fields: [categoryId], references: [id])
-  categoryId  Int
-  country     Country         @relation(fields: [countryId], references: [id])
-  countryId   Int
-  region      Region?         @relation(fields: [regionId], references: [id])
-  regionId    Int?
-  publisher   User            @relation(fields: [publisherId], references: [id])
+  publisher   User @relation(fields: [publisherId], references: [id])
   publisherId Int
-}
-
-model VehicleCategory {
-  id       Int       @id @default(autoincrement())
-  name     String
-  nameAr   String
-  vehicles Vehicle[]
-}
-
-model RealEstateCategory {
-  id          Int          @id @default(autoincrement())
-  name        String
-  nameAr      String
-  realEstates RealEstate[]
 }
 
 model File {
@@ -301,30 +249,3 @@ model File {
   service   Service? @relation(fields: [serviceId], references: [id])
   serviceId Int?
 }
-
-model Country {
-  id          Int          @id @default(autoincrement())
-  name        String
-  nameAr      String
-  jobs        Job[]
-  vehicles    Vehicle[]
-  realEstates RealEstate[]
-  services    Service[]
-  regions     Region[]
-}
-
-model Region {
-  id     Int    @id @default(autoincrement())
-  name   String
-  nameAr String
-
-  vehicles    Vehicle[]
-  realEstates RealEstate[]
-  services    Service[]
-  jobs        Job[]
-
-  country   Country @relation(fields: [countryId], references: [id])
-  countryId Int
-}
-
-//TODO cron job for realestate and vehicle premium

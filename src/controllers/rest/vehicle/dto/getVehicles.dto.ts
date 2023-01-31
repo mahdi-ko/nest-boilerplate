@@ -19,20 +19,8 @@ export class GetVehiclesQueryDto {
   search?: string;
 
   @IsOptional()
-  @IsValidInt()
-  categoryId?: number;
-
-  @IsOptional()
-  @IsValidInt()
-  countryId?: number;
-
-  @IsOptional()
   @IsEnum(PostedDateEnum)
   postedDateEnum?: PostedDateEnum;
-
-  @IsOptional()
-  @IsValidInt({ each: true })
-  regionsIds?: number[];
 
   @IsOptional()
   @IsEnum(VehiclesSortByEnum)
@@ -79,12 +67,4 @@ export class GetFeaturedVehiclesQueryDto {
   @IsOptional()
   @IsString()
   search?: string;
-
-  @IsOptional()
-  @IsValidInt()
-  categoryId?: number;
-
-  @IsOptional()
-  @IsValidInt()
-  countryId?: number;
 }

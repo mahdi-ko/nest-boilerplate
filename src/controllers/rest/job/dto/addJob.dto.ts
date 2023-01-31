@@ -41,16 +41,4 @@ export class CreateJobDto {
   @IsNotEmpty()
   @IsEnum(JobTimeEnum)
   time: JobTimeEnum;
-
-  @IsNotEmpty()
-  @IsValidInt()
-  categoryId: number;
-
-  @IsNotEmpty()
-  @IsValidInt()
-  countryId: number;
-
-  @IsOptional()
-  @IsValidInt()
-  regionId?: number;
 }
