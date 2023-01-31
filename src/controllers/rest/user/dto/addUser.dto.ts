@@ -1,9 +1,7 @@
 import { GenderEnum, RoleEnum } from '@prisma/client';
-import { Transform } from 'class-transformer';
 import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 import {
-  IsValidBoolean,
   IsValidDate,
   IsValidEmail,
 } from '~/src/core/decorators/validators.decorator';

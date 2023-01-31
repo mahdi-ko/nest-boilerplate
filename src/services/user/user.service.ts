@@ -13,7 +13,6 @@ import { deleteFile } from '~/src/core/utils/helpers/deleteFile.utils';
 
 import { PrismaService } from '../../infrastructure/prisma.service';
 import { hashPass } from '../auth/utils/encrypt.utils';
-import { isPremiumFromDate } from './utils/isPremiumFromDate.utils';
 @Injectable()
 export class UserService {
   constructor(private prisma: PrismaService) {}
